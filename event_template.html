@@ -13,8 +13,8 @@
         </div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#events">Events</a></li>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../index.html#events">Events</a></li>
                 <li><a href="#about">About Us</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -26,7 +26,23 @@
             <h1>{{EVENT_TITLE}}</h1>
             <img src="{{MAIN_IMAGE}}" alt="{{EVENT_TITLE}}" class="event-main-image">
             <p>{{EVENT_DESCRIPTION}}</p>
-            <h2>Event Materials</h2>
+
+            <h2>Event Images</h2>
+            <div class="event-images">
+                {{EVENT_IMAGES}}
+            </div>
+
+            <h2>View Documents</h2>
+            <div class="event-documents">
+                {{EVENT_DOCUMENTS}}
+            </div>
+
+            <h2>View Presentations</h2>
+            <div class="event-presentations">
+                {{EVENT_PRESENTATIONS}}
+            </div>
+
+            <h2>Download Materials</h2>
             <ul class="materials-list">
                 {{EVENT_MATERIALS}}
             </ul>
