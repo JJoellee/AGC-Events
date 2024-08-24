@@ -1,8 +1,7 @@
-/* Define brand colors */
 :root {
-    --primary-color: #FF69B4; /* Example pink color */
-    --secondary-color: #4B0082; /* Example purple color */
-    --background-color: #FFF0F5;
+    --primary-color: #CC1B4E;
+    --secondary-color: #004AAD;
+    --background-color: #FFFFFF;
     --text-color: #333;
 }
 
