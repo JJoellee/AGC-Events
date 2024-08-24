@@ -1,2 +1,2 @@
-Event1 title
 This is event 1's description
+it's a very nice event :)
