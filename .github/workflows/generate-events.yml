@@ -17,7 +17,7 @@ jobs:
         run: chmod +x ./generate_event_pages.sh
 
       - name: Run event generation script
-        run: ./generate_event_pages.sh
+        run: ./generate_event_pages.sh ${{ github.repository }}
 
       - name: Commit and push changes
         env:

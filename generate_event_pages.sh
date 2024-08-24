@@ -1,5 +1,7 @@
 #!/bin/bash
 
+REPOSITORY=$1
+
 # Generate index.html
 template=$(cat template.html)
 events_html=""
@@ -37,9 +39,9 @@ for d in events/*/ ; do
         if [ "$extension" = "pdf" ]; then
             view_html="<iframe src='../../${material}' width='100%' height='600px'></iframe>"
         elif [ "$extension" = "ppt" ] || [ "$extension" = "pptx" ]; then
-            view_html="<iframe src='https://view.officeapps.live.com/op/embed.aspx?src=https://raw.githubusercontent.com/${{ github.repository }}/main/${material}' width='100%' height='600px'></iframe>"
+            view_html="<iframe src='https://view.officeapps.live.com/op/embed.aspx?src=https://raw.githubusercontent.com/${REPOSITORY}/main/${material}' width='100%' height='600px'></iframe>"
         elif [ "$extension" = "doc" ] || [ "$extension" = "docx" ]; then
-            view_html="<iframe src='https://view.officeapps.live.com/op/embed.aspx?src=https://raw.githubusercontent.com/${{ github.repository }}/main/${material}' width='100%' height='600px'></iframe>"
+            view_html="<iframe src='https://view.officeapps.live.com/op/embed.aspx?src=https://raw.githubusercontent.com/${REPOSITORY}/main/${material}' width='100%' height='600px'></iframe>"
         fi
         
         materials_html="${materials_html}<div class='material-item'>${view_html}<a href='../../${material}' download class='download-button'>Download ${material_name}</a></div>"
