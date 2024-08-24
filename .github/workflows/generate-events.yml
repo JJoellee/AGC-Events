@@ -1,0 +1,58 @@
+name: Generate Events
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'events/**'
+      - 'template.html' # Rebuild if the template changes
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Generate events HTML
+        run: |
+          # Read the template file
+          template=$(cat template.html)
+          
+          # Start generating the events HTML
+          events_html=""
+
+          # Loop through each event folder
+          for d in events/*/ ; do
+              event_id=$(basename $d)
+              event_title=$(head -n 1 "$d/description.txt")
+              event_description=$(tail -n +2 "$d/description.txt")
+              
+              # Create the event item HTML
+              event_html="
+                <div class='event-item'>
+                    <a class='event-link' href='event.html?event=${event_id}'>
+                        <h3>${event_title}</h3>
+                        <p>${event_description}</p>
+                    </a>
+                </div>"
+              
+              # Append to the events_html string
+              events_html="${events_html}${event_html}"
+          done
+
+          # Replace the {{EVENTS}} placeholder in the template with the generated events HTML
+          index_html="${template//\{\{EVENTS\}\}/${events_html}}"
+
+          # Write the final index.html file
+          echo "$index_html" > index.html
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Automatically generated index.html'
+          git push origin main
