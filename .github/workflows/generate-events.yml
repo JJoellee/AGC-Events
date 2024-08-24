@@ -13,6 +13,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set execute permission on the script
+        run: chmod +x ./generate_event_pages.sh
+
       - name: Run event generation script
         run: ./generate_event_pages.sh
 
